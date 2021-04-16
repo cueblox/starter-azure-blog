@@ -12,9 +12,9 @@ This action will run after you push a change to your content in the `/data` dire
 
 There are two separate web sites in this starter. There will be two separate deployments to Azure Static Web Apps.
 
-1. asdlfasdf
+### CMS Deployment
 
-2. adsfasdf
+### Website Deployment
 
 ## Blog Template
 

@@ -1,28 +1,21 @@
-async function fetchAPI(query, { variables, preview } = {}) {
-  const res = await fetch(process.env.GRAPHCMS_PROJECT_API, {
-    method: 'POST',
+async function fetchAPI(dataset) {
+  const request = process.env.CUEBLOX_PROJECT_API + dataset
+  const res = await fetch(request, {
+    method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${
-        preview
-          ? process.env.GRAPHCMS_DEV_AUTH_TOKEN
-          : process.env.GRAPHCMS_PROD_AUTH_TOKEN
-      }`,
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
+
   })
   const json = await res.json()
 
   if (json.errors) {
-    console.log(process.env.NEXT_EXAMPLE_CMS_GCMS_PROJECT_ID)
+    console.log(process.env.CUEBLOX_PROJECT_API)
     console.error(json.errors)
     throw new Error('Failed to fetch API')
   }
-
-  return json.data
+  console.log(json)
+  return json
 }
 
 export async function getPreviewPostBySlug(slug) {
@@ -56,45 +49,9 @@ export async function getAllPostsWithSlug() {
 }
 
 export async function getAllPostsForHome(preview) {
-  const data = await fetchAPI(
-    `
-    {
-      posts(orderBy: date_DESC, first: 20) {
-        title
-        slug
-        excerpt
-        date
-        coverImage {
-          url(transformation: {
-            image: {
-              resize: {
-                fit:crop,
-                width:2000,
-                height:1000
-              }
-            }
-          })
-        }
-        author {
-          name
-          picture {
-            url(transformation: {
-              image: {
-                resize: {
-                  width:100,
-                  height:100,
-                  fit:crop
-                }
-              }
-            })
-          }
-        }
-      }
-    }
-  `,
-    { preview }
-  )
-  return data.posts
+  const data = await fetchAPI("articles")
+
+  return data
 }
 
 export async function getPostAndMorePosts(slug, preview) {

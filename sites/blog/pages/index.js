@@ -7,12 +7,12 @@ import { getAllPostsForHome } from '../lib/graphcms'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 
-export default function Index({ posts, preview }) {
+export default function Index({ posts }) {
   const heroPost = posts[0]
   const morePosts = posts.slice(1)
   return (
     <>
-      <Layout preview={preview}>
+      <Layout>
         <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
@@ -21,9 +21,8 @@ export default function Index({ posts, preview }) {
           {heroPost && (
             <HeroPost
               title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
+              coverImage={heroPost.image}
+              date={heroPost.publish_date}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
             />
@@ -35,9 +34,9 @@ export default function Index({ posts, preview }) {
   )
 }
 
-export async function getStaticProps({ preview = false }) {
-  const posts = (await getAllPostsForHome(preview)) || []
+export async function getStaticProps() {
+  const posts = (await getAllPostsForHome()) || []
   return {
-    props: { posts, preview },
+    props: { posts },
   }
 }

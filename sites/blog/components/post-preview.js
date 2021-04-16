@@ -8,13 +8,16 @@ export default function PostPreview({
   coverImage,
   date,
   excerpt,
-  author,
   slug,
 }) {
   return (
     <div>
       <div className="mb-5">
-        <CoverImage slug={slug} title={title} url={coverImage.url} />
+        {
+          coverImage && (
+            <CoverImage slug={slug} title={title} url={coverImage.url} />
+          )
+        }
       </div>
       <h3 className="mb-3 text-3xl leading-snug">
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
@@ -25,7 +28,6 @@ export default function PostPreview({
         <Date dateString={date} />
       </div>
       <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture.url} />
     </div>
   )
 }
