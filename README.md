@@ -1,7 +1,8 @@
 # CueBlox Blog on Azure Static Web Apps
 
 [Website Demo](https://agreeable-river-025db7f10.azurestaticapps.net/)
-[CMS Demo](https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql)
+
+[API/GraphQL Demo](https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql)
 
 ## GitHub Actions
 
@@ -11,7 +12,7 @@ This action uses pre-releases with a fixed name so that the download URL of your
 
 This action will run after you push a change to your content in the `/data` directory, so start by making some changes and pushing them to GitHub to trigger the action.
 
-## Two Azure Static Web App Deployments
+## MONOREPO: Two Azure Static Web App Deployments
 
 There are two separate web sites in this starter. There will be two separate deployments to Azure Static Web Apps.
 
