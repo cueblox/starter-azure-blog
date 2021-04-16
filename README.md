@@ -1,5 +1,7 @@
 # CueBlox Blog on Azure Static Web Apps
 
+A monorepo with content managed by [CueBlox](https://www.cueblox.com), served by an Azure Static Web Apps API, and a website that consumes it, also hosted on Azure Static Web Apps.
+
 [Website Demo](https://agreeable-river-025db7f10.azurestaticapps.net/)
 
 [API/GraphQL Demo](https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql)
@@ -16,9 +18,29 @@ This action will run after you push a change to your content in the `/data` dire
 
 There are two separate web sites in this starter. There will be two separate deployments to Azure Static Web Apps.
 
-### CMS Deployment
+### CMS/API Deployment
+
+Create an Azure Static Web Apps deployment of the /sites/cms folders. Choose /sites/cms/app for the App folder and /sites/cms/api for the API folder. An example GitHub workflow file looks like this:
+
+```yaml
+app_location: "/sites/cms/app" # App source code path
+api_location: "/sites/cms/api" # Api source code path
+output_location: "" # Built app content directory
+```
 
 ### Website Deployment
+
+Create an Azure Static Web Apps deployment of the /sites/blog folders. Choose /sites/blog for the App folder and no API folder. An example GitHub workflow file looks like this:
+
+```yaml
+app_location: "/sites/blog" # App source code path
+api_location: "" # Api source code path - optional
+output_location: "out" # Built app content directory - Next.js default
+```
+
+## Working with Content
+
+Download [CueBlox](https://github.com/cueblox/blox) and use `blox` commands to work with the content. `blox new` and `blox build` will be the most commonly used commands. Commit and push your content to have it automatically deployed to the REST/GraphQL endpoint.
 
 ## Blog Template
 
