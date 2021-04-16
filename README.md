@@ -1,5 +1,8 @@
 # CueBlox Blog on Azure Static Web Apps
 
+[Website Demo](https://agreeable-river-025db7f10.azurestaticapps.net/)
+[CMS Demo](https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql)
+
 ## GitHub Actions
 
 `.github/workflows/data.yml` contains a workflow that will automatically create a pre-release named 'CueBlox' of your processed content every time you make a change to content in the `/data/` folder.
