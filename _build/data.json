@@ -1,0 +1,56 @@
+{
+    "articles": [
+        {
+            "title": "My New Article",
+            "excerpt": "Small Description",
+            "featured": false,
+            "draft": false,
+            "publish_date": "2020-01-01",
+            "body": "My Awesome Article",
+            "id": "mypost"
+        }
+    ],
+    "categories": [
+        {
+            "name": "Name",
+            "description": "Description",
+            "id": "linux",
+            "body": "This is my category for ..."
+        }
+    ],
+    "pages": [
+        {
+            "title": "My New Page",
+            "excerpt": "Small description about my page",
+            "draft": false,
+            "publish_date": "2020-01-01",
+            "section_id": "tips",
+            "id": "home"
+        }
+    ],
+    "profiles": [
+        {
+            "first_name": "Forename",
+            "last_name": "Surname",
+            "age": 21,
+            "company": "CueBlox",
+            "title": "Cue Slinger",
+            "body": "☕️ Required",
+            "id": "janet"
+        }
+    ],
+    "sections": [
+        {
+            "name": "Name",
+            "description": "Small description",
+            "body": "All about this section",
+            "id": "tips"
+        }
+    ],
+    "websites": [
+        {
+            "url": "https://google.com",
+            "id": "www"
+        }
+    ]
+}
