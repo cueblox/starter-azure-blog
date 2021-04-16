@@ -1,4 +1,7 @@
-title: My New Page
+---
+title: Home
 excerpt: Small description about my page
 publish_date: "2020-01-01"
-section_id: tips
+---
+
+Welcome to my little corner of the Internet.
