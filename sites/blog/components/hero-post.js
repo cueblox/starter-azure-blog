@@ -15,7 +15,7 @@ export default function HeroPost({
       <div className="mb-8 md:mb-16">
         {
           coverImage && (
-            <CoverImage slug={slug} title={title} url={coverImage.url} />
+            <CoverImage slug={slug} title={title} url={coverImage} />
           )
         }
       </div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 
 export default function CoverImage({ title, url, slug }) {
+
   const image = (
     <Image
       width={2000}

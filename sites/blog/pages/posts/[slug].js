@@ -7,7 +7,7 @@ import Header from 'components/header'
 import PostHeader from 'components/post-header'
 import SectionSeparator from 'components/section-separator'
 import Layout from 'components/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from 'lib/graphcms'
+import { getAllPostsWithSlug, getPost } from 'lib/graphcms'
 import PostTitle from 'components/post-title'
 import Head from 'next/head'
 import { CMS_NAME } from 'lib/constants'
@@ -15,12 +15,12 @@ import { CMS_NAME } from 'lib/constants'
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter()
 
-  if (!router.isFallback && !post?.slug) {
+  if (!router.isFallback && !post?.id) {
     return <ErrorPage statusCode={404} />
   }
 
   return (
-    <Layout preview={preview}>
+    <Layout >
       <Container>
         <Header />
         {router.isFallback ? (
@@ -36,14 +36,12 @@ export default function Post({ post, morePosts, preview }) {
               </Head>
               <PostHeader
                 title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
+                coverImage={post.image}
+                date={post.publish_date}
               />
-              <PostBody content={post.content} />
+              <PostBody content={post.body} />
             </article>
             <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           </>
         )}
       </Container>
@@ -51,13 +49,11 @@ export default function Post({ post, morePosts, preview }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const data = await getPostAndMorePosts(params.slug, preview)
+export async function getStaticProps({ params }) {
+  const post = await getPost(params.slug)
   return {
     props: {
-      preview,
-      post: data.post,
-      morePosts: data.morePosts || [],
+      post: post,
     },
   }
 }
@@ -65,8 +61,8 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const posts = await getAllPostsWithSlug()
   return {
-    paths: posts.map(({ slug }) => ({
-      params: { slug },
+    paths: posts.map(({ id }) => ({
+      params: { slug: id },
     })),
     fallback: true,
   }
