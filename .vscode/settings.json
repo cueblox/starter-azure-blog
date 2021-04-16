@@ -1,0 +1,5 @@
+{
+    "staticWebApps.appSubpath": "/sites/cms/app",
+    "staticWebApps.apiSubpath": "/sites/cms/api",
+    "staticWebApps.outputSubpath": ""
+}

@@ -5,7 +5,7 @@ const createHandler = require("azure-function-express").createHandler;
 const jsonServer = require('json-server')
 
 
-const data = fetch('https://github.com/bketelsen/bkml/releases/download/blox/data.json').json();
+const data = fetch('https://github.com/cueblox/starter-azure-blog/releases/download/blox/data.json').json();
 
 const router = jsonServer.router(data, { foreignKeySuffix: '_id' })
 const app = require('express')();
