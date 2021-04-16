@@ -64,6 +64,6 @@ export async function getStaticPaths() {
     paths: posts.map(({ id }) => ({
       params: { slug: id },
     })),
-    fallback: true,
+    fallback: false,
   }
 }
