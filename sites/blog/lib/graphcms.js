@@ -1,5 +1,5 @@
 async function fetchAPI(dataset, slug = null) {
-  var request = process.env.CUEBLOX_PROJECT_API + dataset
+  var request = 'https://brave-water-0fbfe4710.azurestaticapps.net/api/' + dataset
   if (slug !== null) {
     request = request + "/" + slug
   }
