@@ -42,6 +42,8 @@ output_location: "out" # Built app content directory - Next.js default
 
 Download [CueBlox](https://github.com/cueblox/blox) and use `blox` commands to work with the content. `blox new` and `blox build` will be the most commonly used commands. Commit and push your content to have it automatically deployed to the REST/GraphQL endpoint.
 
+Schemata are in the `/schemata` folder. You can see which fields are available for each content model by investigating the definitions.
+
 ## Blog Template
 
 Blog template is from [next.js examples](https://github.com/vercel/next.js/tree/canary/examples), Copyright Vercel, Inc. Licensed under the MIT License.
