@@ -11,6 +11,7 @@
     "classnames": "2.2.6",
     "date-fns": "2.10.0",
     "next": "latest",
+    "next-mdx-remote": "^2.1.4",
     "postcss": "8.2.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"

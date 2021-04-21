@@ -17,7 +17,6 @@ async function fetchAPI(dataset, slug = null) {
     console.error(json.errors)
     throw new Error('Failed to fetch API')
   }
-  console.log(json)
   return json
 }
 
