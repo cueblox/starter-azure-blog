@@ -35,7 +35,7 @@ export default function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const bloxdata = new GraphQLClient(process.env.CUEBLOX_PROJECT_GQL);
+  const bloxdata = new GraphQLClient('https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql');
 
   const { allArticles } = await bloxdata.request(`
   {

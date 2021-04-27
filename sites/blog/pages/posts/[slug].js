@@ -67,7 +67,7 @@ export default function Post({ source, post, morePosts, preview }) {
 }
 
 export async function getStaticProps({params}) {
-  const bloxdata = new GraphQLClient(process.env.CUEBLOX_PROJECT_GQL);
+  const bloxdata = new GraphQLClient('https://brave-water-0fbfe4710.azurestaticapps.net/api/graphql');
 
 const query = gql`
   query filterArticle(
