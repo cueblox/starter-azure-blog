@@ -20,7 +20,7 @@ jobs:
           submodules: true
       - name: Copy Static Directory
         run: |
-          cp -R data/static sites/cms/app/
+          cp -R data/static/* sites/cms/app/
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
