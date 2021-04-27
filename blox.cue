@@ -2,6 +2,7 @@
   build_dir:    "_build"
   data_dir:     "data"
   schemata_dir: "schemata"
+  static_dir: "data/static"
   remotes: [
     {
       name: "category"
