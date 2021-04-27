@@ -2,7 +2,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 
 function imageSource(file) {
-  return process.env.CUEBLOX_PROJECT_STATIC + file
+  return 'https://brave-water-0fbfe4710.azurestaticapps.net/' + file
 }
 export default function CoverImage({ title, img, slug }) {
   const image = (
