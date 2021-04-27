@@ -1,11 +1,11 @@
+import { CMS_NAME } from '../lib/constants'
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
+import { GraphQLClient } from 'graphql-request';
+import Head from 'next/head'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPostsForHome } from '../lib/graphcms'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import MoreStories from '../components/more-stories'
 
 export default function Index({ posts }) {
   const heroPost = posts[0]
@@ -21,7 +21,7 @@ export default function Index({ posts }) {
           {heroPost && (
             <HeroPost
               title={heroPost.title}
-              coverImage={heroPost.image}
+              coverImage={heroPost.Image}
               date={heroPost.publish_date}
               slug={heroPost.id}
               excerpt={heroPost.excerpt}
@@ -35,8 +35,28 @@ export default function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = (await getAllPostsForHome()) || []
-  return {
-    props: { posts },
+  const bloxdata = new GraphQLClient(process.env.CUEBLOX_PROJECT_GQL);
+
+  const { allArticles } = await bloxdata.request(`
+  {
+    allArticles {
+      body
+      title
+      publish_date
+      excerpt
+      id
+      Image {
+        file_name
+        width
+        height
+      }
+    }
   }
-}
+  `);
+
+  return {
+    props: {
+      posts: [...allArticles],
+    },
+  }
+};

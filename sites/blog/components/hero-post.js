@@ -1,5 +1,5 @@
-import Date from '../components/date'
 import CoverImage from '../components/cover-image'
+import Date from '../components/date'
 import Link from 'next/link'
 
 export default function HeroPost({
@@ -14,7 +14,7 @@ export default function HeroPost({
       <div className="mb-8 md:mb-16">
         {
           coverImage && (
-            <CoverImage slug={slug} title={title} url={coverImage} />
+            <CoverImage slug={slug} title={title} img={coverImage} />
           )
         }
       </div>

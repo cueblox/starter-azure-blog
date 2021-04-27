@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import cn from 'classnames'
 
-export default function CoverImage({ title, url, slug }) {
-
+function imageSource(file) {
+  return process.env.CUEBLOX_PROJECT_STATIC + file
+}
+export default function CoverImage({ title, img, slug }) {
   const image = (
     <img
       width={2000}
@@ -11,7 +13,7 @@ export default function CoverImage({ title, url, slug }) {
       className={cn('shadow-small', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
-      src={url}
+      src={imageSource(img.file_name)}
     />
   )
 

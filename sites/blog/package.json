@@ -10,6 +10,7 @@
     "autoprefixer": "10.1.0",
     "classnames": "2.2.6",
     "date-fns": "2.10.0",
+    "graphql": "^15.5.0",
     "next": "latest",
     "next-mdx-remote": "^2.1.4",
     "postcss": "8.2.2",
@@ -17,6 +18,7 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "graphql-request": "^3.4.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "2.0.2"

@@ -1,17 +1,16 @@
-import { getAllPostsWithSlug, getPost } from 'lib/graphcms'
-
 import { CMS_NAME } from 'lib/constants'
 import Container from 'components/container'
 import ErrorPage from 'next/error'
+import { GraphQLClient } from 'graphql-request';
 //import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Header from 'components/header'
 import Layout from 'components/layout'
-import MoreStories from 'components/more-stories'
 import PostBody from 'components/post-body'
 import PostHeader from 'components/post-header'
 import PostTitle from 'components/post-title'
 import SectionSeparator from 'components/section-separator'
+import { gql } from 'graphql-request'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import { useRouter } from 'next/router'
@@ -30,6 +29,7 @@ const components = {
 }
 export default function Post({ source, post, morePosts, preview }) {
   const router = useRouter()
+  console.log("slug.js", post)
 
   if (!router.isFallback && !post?.id) {
     return <ErrorPage statusCode={404} />
@@ -54,7 +54,7 @@ export default function Post({ source, post, morePosts, preview }) {
               </Head>
               <PostHeader
                 title={post.title}
-                coverImage={post.image}
+                coverImage={post.Image}
                 date={post.publish_date}
               />
               <PostBody content={content} />
@@ -67,10 +67,37 @@ export default function Post({ source, post, morePosts, preview }) {
   )
 }
 
-export async function getStaticProps({ params }) {
-  const post = await getPost(params.slug)
-  console.log("body:", post.body)
-  const mdxSource = await renderToString(post.body, {
+export async function getStaticProps({params}) {
+  const bloxdata = new GraphQLClient(process.env.CUEBLOX_PROJECT_GQL);
+
+const query = gql`
+  query filterArticle(
+    $articleID: ID!
+    ){
+    Article(
+      id: $articleID){
+      id
+      body
+      title
+      excerpt
+      featured
+      draft
+      publish_date
+      Image {
+        file_name
+        height
+        width
+      }
+  
+    }
+  }
+  `;
+  const variables = {
+    articleID: params.slug ,
+  }
+
+  const data = await bloxdata.request(query,variables);
+  const mdxSource = await renderToString(data.Article.body, {
     components,
     // Optionally pass remark/rehype plugins
     mdxOptions: {
@@ -83,15 +110,23 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       source: mdxSource,
-      post: post,
+      post: data.Article,
     },
   }
-}
+};
 
 export async function getStaticPaths() {
-  const posts = await getAllPostsWithSlug()
+  const bloxdata = new GraphQLClient(process.env.CUEBLOX_PROJECT_GQL);
+
+  const { allArticles } = await bloxdata.request(`
+  {
+    allArticles {
+      id
+    }
+  }
+  `);
   return {
-    paths: posts.map(({ id }) => ({
+    paths: allArticles.map(({ id }) => ({
       params: { slug: id },
     })),
     fallback: false,
