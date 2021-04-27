@@ -29,7 +29,6 @@ const components = {
 }
 export default function Post({ source, post, morePosts, preview }) {
   const router = useRouter()
-  console.log("slug.js", post)
 
   if (!router.isFallback && !post?.id) {
     return <ErrorPage statusCode={404} />
