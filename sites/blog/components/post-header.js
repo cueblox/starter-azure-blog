@@ -3,7 +3,6 @@ import Date from '../components/date'
 import PostTitle from '../components/post-title'
 
 export default function PostHeader({ title, coverImage, date }) {
-  console.log("postheader", coverImage)
   return (
     <>
       <PostTitle>{title}</PostTitle>
